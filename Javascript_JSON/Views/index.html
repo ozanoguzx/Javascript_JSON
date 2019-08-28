@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <button onclick="Click()">Tıkla!</button>
+</body>
+</html>
+
+<script>
+    //JSON Açılımı Javascript Object Notation açılımına sahiptir.
+    //JSON verilerimizi aktarırken programlama dili bağımsız bir format olarak kullanılır ve oldukça popülerdir.
+
+    //Format Örneği:
+
+    var categoryData = {
+        "DosyaAdi": "KategoriListesi",
+        "KayitSayisi": "4",
+        "Kategoriler": [
+            { "Ad": "Teknoloji", "Aciklama": "Notebook, TV, Camera" },
+            { "Ad": "Kozmetik", "Aciklama": "Parfüm,  Şampuan" },
+            { "Ad": "Hobi", "Aciklama": "Puzzle, Drone" },
+            { "Ad": "Bahçe", "Aciklama": "Mangal, Hamak" }
+        ]
+    }
+
+    //Üstteki örnekte görüldüğü gibi her bir veri süslü parantezle başlar. Dizi olarak tutulan veriler köşeli parantezle ifade edilir.
+    //Key - Value yani anahtar değer ikilisi şeklinde tanımlamalar gerçekleştirilir.
+    //Veriler virgüllerle birbirinden ayrılmalıdır.
+
+    function Click() {
+        //PROPERTY EKLEMEK
+        //JSON nesneleri de javascript nesneleridir. prototype temelli bir dil olduğu için '.' notasyonu ile eklemek oldukça basittir.
+        //Var olan bir nesneye yeni bir property eklemek istersek;
+        var currentDate = new Date();
+        categoryData.OlusturulmaYili = currentDate.getFullYear();
+        
+
+        //PROPERTY SİLMEK
+        //delete categoryData.KayitSayisi;
+
+
+
+        //---VERİLERİ GÖRÜNTÜLEME İŞLEMLERİ---
+
+        //Alert ile json objesini görüntüleyemeyiz.
+        //alert(categoryData);
+
+        //Eğer belirli bir veriyi çekmek istersek '.' operatörünü kullanarak erişebiliriz.
+        alert(categoryData.DosyaAdi);
+
+        //Json objesinin tamamını stringe çevirerek görüntüleme şansımız vardır.
+        //alert(JSON.stringify(categoryData));
+
+        //console ekranında stringify fonksiyonunu kullanmadan görüntüleme şansına sahibiz.
+        console.log(categoryData);
+
+
+
+        //---VERİLERE ERİŞME İŞLEMLERİ---
+
+        var fileName = categoryData.DosyaAdi;
+        var fileSize = categoryData.KayitSayisi;
+
+        //Array içerisindeki verilere erişme
+        var sampleCategory1 = categoryData.Kategoriler[0].Aciklama;
+        var sampleCategory2 = categoryData.Kategoriler[2].Ad;
+
+        //Derste diğerlerini de ekrana basarak deneyebilirsiniz.
+        console.log(fileName);
+
+
+
+         //ELEMAN EKLEME
+        //Diziye bir eleman eklemek için, nesne içerisindeki listenin push fonksiyonunu çağırırız.
+        categoryData.Kategoriler.push({ "Ad": "Kitap", "Aciklama": "Biyografi, Komedi" })
+
+        //ELEMAN SİLME
+        //Bahçe elemanını silmek.
+        categoryData.Kategoriler.splice(3,1)
+    }
+
+</script>
